@@ -1,71 +1,181 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  @apply bg-[#09090B] dark:text-white duration-300;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body {
+  font-family: "Geist Mono", monospace;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #1f1f1f;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* particles */
+.particle {
+  z-index: 9999;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-animation 2s ease-in-out infinite;
+}
+
+/* random color */
+.particle:nth-child(2n) {
+  background-color: #00b8ff;
+}
+
+.particle:nth-child(2n + 1) {
+  background-color: #ff0099;
+}
+
+.particle:nth-child(3n) {
+  background-color: #ff6600;
+}
+
+.particle:nth-child(3n + 1) {
+  background-color: #33cc33;
+}
+
+.particle:nth-child(4n) {
+  background-color: #6666ff;
+}
+
+.particle:nth-child(4n + 1) {
+  background-color: #ffcc00;
+}
+
+@keyframes particle-animation {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
   }
-  a:hover {
-    color: #747bff;
+  30% {
+    opacity: 0.8;
+    transform: translateY(-10px) scale(0.8) rotate(10deg);
   }
-  button {
-    background-color: #f9f9f9;
+  50% {
+    opacity: 0.5;
+    transform: translateY(-15px) scale(6) rotate(20deg);
+  }
+  80% {
+    opacity: 0.2;
+    transform: translateY(-20px) scale(0.2) rotate(30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-1500px) scale(0) rotate(40deg);
   }
 }
+
+.cursor-none {
+  cursor: none;
+}
+
+* {
+  cursor: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+
+/* html */
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #1f1f1f;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* body */
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #1f1f1f;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
+/* Twinkling star */
+#App {
+  background: black;
+  overflow: hidden;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+#sky {
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  fill: white;
+  position: absolute;
+}
+
+#shootingstars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.wish {
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  background: white;
+  opacity: 0;
+  border-radius: 2px;
+}
+/* Twinkling star */
