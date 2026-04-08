@@ -32,9 +32,10 @@ const Preloader = () => {
   }, [showSecondText]);
 
   useEffect(() => {
+    const PRELOAD_MS = import.meta.env.DEV ? 1000 : 7000;
     const timer = setTimeout(() => {
       setIsVisible(false);
-    }, 7000); // show preloader for 7 seconds
+    }, PRELOAD_MS); // show preloader for 1s in dev, 7s in prod
     return () => clearTimeout(timer);
   }, []);
 
