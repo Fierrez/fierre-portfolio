@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, HashRouter as Router, Routes } from "react-router-dom";
 import Preloader from "./components/Preloader";
 import Hero from "./page/Hero";
 import Layout from "./page/Layout";
