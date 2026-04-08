@@ -1,7 +1,5 @@
 "use client";
 
-
-
 import gsap from "gsap";
 import { useEffect, useState } from "react";
 import Particles from "../components/Particles";
@@ -10,15 +8,18 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import useParticles from "../components/useParticles";
-import BoxLine from "../components/BoxLine";
-import useGridSize from "../components/useGridSize";
-import CustomCursor from "../components/CustomCursor";
+// import BoxLine from "../components/BoxLine";
+// import useGridSize from "../components/useGridSize";
+// import CustomCursor from "../components/CustomCursor";
+import RocketCursor from "../components/RocketCursor";
 import { SignOut } from "@phosphor-icons/react";
 
 // Twinkling Star
-import StarrySky from "../components/StarrySky";
-import { Outlet } from "react-router-dom";
+// import StarrySky from "../components/StarrySky";
+// Celestial sky (comets, satellites, stars)
+import CelestialSky from "../components/CelestialSky";
 
+// import { Outlet } from "react-router-dom";
 
 const Layout = ({ children, className }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -28,7 +29,7 @@ const Layout = ({ children, className }) => {
     // simulate loading time
     setTimeout(() => {
       setIsLoading(false);
-    }, 7099); // 7 seconds
+    }, 7000); // 7 seconds
   }, []);
 
   // particle
@@ -88,6 +89,7 @@ const Layout = ({ children, className }) => {
 
   useEffect(() => {
     const noiseEffect = document.querySelector(".noise-effect");
+    if (!noiseEffect) return;
     gsap.to(noiseEffect, {
       duration: 0.5,
       x: "+=10",
@@ -124,7 +126,7 @@ const Layout = ({ children, className }) => {
   console.log(isFullscreen);
 
   // use this to get the grid size, and handle laggy performance, before i fix this the columns and  rows value is customizeable and that make the page laggy
-  const { columns, rows } = useGridSize();
+  // const { columns, rows } = useGridSize();
 
   return (
     <>
@@ -146,26 +148,37 @@ const Layout = ({ children, className }) => {
             }
           }}
         >
-          <CustomCursor />
-
-          <BoxLine
+          {/* <CustomCursor /> */}
+          <RocketCursor />
+          {/* absolute border grid lines */}
+          {/* <BoxLine
             boxSize={55}
             color="#898989"
             opacity={0.1}
             columns={columns}
             rows={rows}
-          />
+          /> */}
 
-          {/* particles */}
+          {/* particles background background*/}
           <div className="hidden lg:block">
             <Particles quantity={500} size={0.4} vx={0.1} vy={0.1} />
           </div>
 
           {/* Twinnkle Star*/}
-          <div className="hidden lg:block">
+          {/* <div className="hidden lg:block">
             <StarrySky />
+          </div> */}
+          {/* Celestial additions: comets & satellites */}
+
+          <div className="hidden lg:block">
+            <CelestialSky
+              numStars={60}
+              numComets={20}
+              numSatellites={20}
+              cometTrailScale={4}
+            />
           </div>
-          
+
           {/* grainy effects */}
           <div
             className={`hidden lg:block  fixed h-[300%] w-[300%] bg-grain-noise opacity-5 animate-grain pointer-events-none top-0`}
@@ -252,7 +265,7 @@ const Layout = ({ children, className }) => {
                   to={"/"}
                   className="hover-particle items-center text-center text-md text-primary"
                 >
-                  Fierre's Portfolio
+                  Makki&apos;s Portfolio
                 </Link>
 
                 <div>
@@ -332,9 +345,9 @@ const Layout = ({ children, className }) => {
                 <p className="text-sm">master</p>
               </div>
 
-              <div className="bg-gradient-to-t from-[#090909] to-[#1f1f1f]/10 absolute inset-x bottom-0 z-10"></div>
+              <div className="bg-gradient-to-t from-[#090909] to-[#1f1f1f]/10 absolute inset-x-0 bottom-0 z-10 h-10" />
 
-              <div className="flex justify-between">
+              <div className="flex justify-between relative z-20 bg-[#131313] px-4 py-2 rounded-b-[2vh]">
                 <div className="flex  justify-start gap-2 ">
                   <Link
                     className=" text-sm bg-half-white text-secondary px-2"
@@ -344,7 +357,7 @@ const Layout = ({ children, className }) => {
                   </Link>
                   <Link
                     className={`${handleActiveTab(
-                      "/"
+                      "/",
                     )} text-sm hover-particle px-2`}
                     to={"/"}
                   >
@@ -352,7 +365,7 @@ const Layout = ({ children, className }) => {
                   </Link>
                   <Link
                     className={`${handleActiveTab(
-                      "/guestbook"
+                      "/guestbook",
                     )} text-sm hover-particle truncate  px-2`}
                     to={"/guestbook"}
                   >
@@ -361,31 +374,29 @@ const Layout = ({ children, className }) => {
 
                   <Link
                     className={`${handleActiveTab(
-                      "/Projects"
+                      "/projects",
                     )} text-sm hover-particle  px-2`}
-                    to={"/Projects"}
+                    to={"/projects"}
                   >
                     Projects
                   </Link>
 
                   <Link
                     className={`${handleActiveTab(
-                      "/Social"
+                      "/social",
                     )} text-sm hover-particle  px-2`}
-                    to={"/Social"}
+                    to={"/social"}
                   >
                     Social
                   </Link>
-
                   <Link
                     className={`${handleActiveTab(
-                      "/services"
+                      "/services",
                     )} text-sm hover-particle  px-2`}
                     to={"/services"}
                   >
                     Services
                   </Link>
-
                 </div>
 
                 <div className="hidden md:block flex items-end justify-end">
@@ -395,7 +406,7 @@ const Layout = ({ children, className }) => {
                     transition={{ duration: 10, repeatType: "reverse" }}
                     className="flex items-center text-[12px] gap-1 text-sm"
                   >
-                    footer left
+                    footer
                     <motion.span
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}

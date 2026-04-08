@@ -5,6 +5,7 @@ import ScrambledText from "./ScrambledText";
 const Preloader = () => {
   const [firstTextDone, setFirstTextDone] = useState(false);
   const [showSecondText, setShowSecondText] = useState(false);
+  const [showThirdText, setShowThirdText] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isTextVisible, setIsTextVisible] = useState(true);
 
@@ -24,6 +25,13 @@ const Preloader = () => {
   }, [firstTextDone]);
 
   useEffect(() => {
+    if (showSecondText) {
+      const t = setTimeout(() => setShowThirdText(true), 600);
+      return () => clearTimeout(t);
+    }
+  }, [showSecondText]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
     }, 7000); // show preloader for 7 seconds
@@ -35,7 +43,8 @@ const Preloader = () => {
       {isVisible && (
         <motion.div
           onContextMenu={(e) => e.preventDefault()}
-          className=" flex items-center justify-center min-h-screen bg-black text-white flex-col absolute top-0 left-0 w-full h-full"
+          aria-hidden={true}
+          className="pointer-events-none flex items-center justify-center min-h-screen bg-black text-white flex-col absolute top-0 left-0 w-full h-full"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -86,6 +95,22 @@ const Preloader = () => {
                 ))}
               </motion.div>
             </motion.h1>
+          )}
+
+          {showThirdText && (
+            <motion.h2
+              className="text-lg md:text-xl font-medium text-center mt-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <ScrambledText
+                text="Loading portfolio"
+                speed={30}
+                scrambleSpeed={40}
+                className=""
+              />
+            </motion.h2>
           )}
         </motion.div>
       )}

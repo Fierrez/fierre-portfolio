@@ -8,19 +8,18 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 import PageNotFound from "./page/pagenotfound";
 import Projects from "./page/Projects";
+import Social from "./page/Social";
+import Services from "./page/Services";
 
 function App() {
   /*
    * login validation notification
    */
-  const url = new URL(window.location.href);
-  const loginStatus = url.searchParams.get("login");
-  const logoutStatus = url.searchParams.get("logout");
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  console.log(user);
+  // user data available in localStorage if needed
 
   useEffect(() => {
+    const url = new URL(window.location.href);
+    const loginStatus = url.searchParams.get("login");
     if (loginStatus === "true") {
       Swal.fire({
         title: "Login Success",
@@ -36,9 +35,11 @@ function App() {
       // update url to newly
       window.history.replaceState({}, "", url);
     }
-  }, [loginStatus]);
+  }, []);
 
   useEffect(() => {
+    const url = new URL(window.location.href);
+    const logoutStatus = url.searchParams.get("logout");
     if (logoutStatus === "true") {
       Swal.fire({
         title: "Logout Success",
@@ -55,7 +56,7 @@ function App() {
       // update url to newly
       window.history.replaceState({}, "", url);
     }
-  }, [logoutStatus]);
+  }, []);
 
   // disable keyboard shortcuts inspect :D
   useEffect(() => {
@@ -129,6 +130,22 @@ function App() {
             element={
               <Layout>
                 <Projects />
+              </Layout>
+            }
+          />
+          <Route
+            path="/social"
+            element={
+              <Layout>
+                <Social />
+              </Layout>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <Layout>
+                <Services />
               </Layout>
             }
           />

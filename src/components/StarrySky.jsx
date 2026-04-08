@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
 import anime from "animejs";
 import "../index.css"; // Import styles
 
 const StarrySky = () => {
-  const [numStars, setNumStars] = useState(60);
+  const numStars = 60;
   const [viewport, setViewport] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -54,7 +54,7 @@ const StarrySky = () => {
             cx={getRandomX()}
             cy={getRandomY()}
             r={randomRadius()}
-            fill="white"
+            fill="red"
             className="star"
           />
         ))}

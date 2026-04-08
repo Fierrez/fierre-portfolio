@@ -149,12 +149,6 @@ Particles.propTypes = {
   vy: PropTypes.number
 };
 
-Particles.defaultProps = {
-  quantity: 100,
-  size: 1,
-  dpr: window.devicePixelRatio || 1,
-  vx: 0,
-  vy: 0
-};
+// default props are provided via parameter defaults; remove defaultProps to avoid React warning
 
 export default Particles;
