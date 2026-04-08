@@ -399,7 +399,7 @@ const Layout = ({ children, className }) => {
                   </Link>
                 </div>
 
-                <div className="hidden md:block flex items-end justify-end">
+                <div className="md:block flex items-end justify-end">
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

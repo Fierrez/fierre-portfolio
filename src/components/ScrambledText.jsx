@@ -70,7 +70,7 @@ const ScrambledText = ({
       intervalsRef.current = [];
       timeoutsRef.current = [];
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, [text, speed, scrambleSpeed, charset, onComplete]);
 
   return <span className={className}>{displayedText}</span>;
